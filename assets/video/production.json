@@ -1,6 +1,6 @@
 {
   "title": "让好游戏，被更多玩家看见",
-  "version": "1.2-five-stage-motion",
+  "version": "1.3-reservation-comparison",
   "project_type": "商业发行服务动态讲解片",
   "delivery": {
     "master": "assets/video/publishing_explainer_1080p.mp4",
@@ -11,7 +11,7 @@
     "resolution": "1920x1080",
     "aspect_ratio": "16:9",
     "fps": 30,
-    "duration_seconds": 128,
+    "duration_seconds": 138,
     "video_codec": "H.264",
     "pixel_format": "yuv420p",
     "audio_codec": "AAC",
@@ -22,10 +22,10 @@
   },
   "creative": {
     "hook": "你的游戏，值得被更多玩家看见",
-    "structure": ["问题", "方法", "经验", "数据", "热门榜第二历史高光", "四大发行方法", "价值边界", "合作方式", "免费诊断引导"],
-    "motion": ["220枚示意单元动态揭示头部20个与其他游戏的数量关系", "五阶段逐步聚焦、各自动态示意、最后五卡汇总", "每章随进度加速推镜与节拍微脉冲", "横扫、纵向揭幕、六层切片三类转场", "章节重点按节拍移交", "动态粒子、数据递增、图表绘制与截图扫描"],
+    "structure": ["问题", "方法", "经验", "数据", "热门榜第二历史高光", "四大发行方法", "五步推进", "多期预约测试对比", "价值边界", "合作方式", "免费诊断引导"],
+    "motion": ["220枚示意单元动态揭示头部20个与其他游戏的数量关系", "五阶段逐步聚焦、各自动态示意、最后五卡汇总", "新增双折线对比：预约蓄水、测试验证与首发抬高", "固定机位逐帧输出，不做推镜、位移或节拍脉冲，避免画面抖动", "横扫、纵向揭幕、六层切片三类转场", "章节重点按节拍移交", "动态粒子、数据递增、图表绘制与截图扫描"],
     "five_stage_process": ["预约期", "玩家预约反馈", "限量测试", "不限量测试", "首发"],
-    "revision_requests": ["第9页由三步改为五步，68至84秒逐一讲解", "4至17秒明确呈现200多款游戏只有前20个达到三位数流量的当下困境", "加强全片信息推进、节奏、镜头和转场，保留纯程序音乐"],
+    "revision_requests": ["第9页由三步改为五步，68至84秒逐一讲解", "4至17秒明确呈现200多款游戏只有前20个达到三位数流量的当下困境", "新增第10段：多期预约测试与直接上线的折线图对比（84至94秒）", "全片改为固定机位，去除逐帧缩放、位移与节拍脉冲造成的画面抖动", "加强全片信息推进、节奏、镜头和转场，保留纯程序音乐"],
     "no_voice_design": "所有核心内容直接呈现于画面；短句、分层信息与足够停留时间，不依赖旁白补充信息。",
     "call_to_action": "发送游戏信息，免费发行诊断",
     "contact_note": "未提供联系方式，不虚构二维码、账号、网址或电话号码。"
@@ -37,6 +37,7 @@
     "13720_daily_apk_completions": "原图时间2021-05-03，指标为APK新增下载完成量，不写成独立用户或全平台总下载。",
     "ranking_number_2": "来自委托方明确补充：游戏最高到热门榜单第二；当前没有对应榜单截图。片中标注服务方提供、非当前榜单截图、不构成排名承诺。",
     "current_market_observation": "委托方本轮明确提供：200多款游戏只有前20个达到三位数流量。片中按服务方当下观察口径呈现，未冒充平台官方统计；220枚图形仅示意200多的数量级，并非精确样本数。",
+    "reservation_comparison": "多期预约测试与直接上线的双折线为节奏差异示意，不标注真实数值，不使用未提供的后台数据，不承诺固定增长幅度。",
     "removed_unverified_market_stats": "不使用原文热度通过率不足10%等没有提供出处的数据。",
     "no_guarantees": "未承诺固定下载量、固定评分、固定榜位或保证获得官方资源。",
     "platform_independence": "独立发行服务介绍，非TapTap官方服务或效果保证。"
@@ -46,7 +47,7 @@
     {"path": "assets/image/QQ20261019-104942.png", "role": "累计新增用户及历史趋势后台截图", "sha256": "68e9f09dd0350ff6e348fe87a352e3466d5aeb2da199b6939ddc369ee36f23a1"},
     {"path": "assets/image/QQ20261019-092002.png", "role": "2021-05-03 APK下载指标截图", "sha256": "452cf5e6832c68ffecddbb68f0de20d629891fb555b883cb9708dd293c8c440b"},
     {"path": "assets/image/QQ20261019-125858.png", "role": "委托方原始参考图，保留在项目中，不用作热门榜第二的证据", "sha256": "4539c72b16881f9c1779d64ba4d09b58713917e4012066020be3147f50a65868"},
-    {"path": "assets/audio/music/publishing_theme_procedural.wav", "role": "由scripts/film/Music.lua完整作曲与合成；120BPM、4/4、64小节、128秒；无外部采样与AI音乐输入"},
+    {"path": "assets/audio/music/publishing_theme_procedural.wav", "role": "由scripts/film/Music.lua完整作曲与合成；120BPM、4/4、69小节、138秒；无外部采样与AI音乐输入"},
     {"path": "assets/fonts/NotoSansSC.ttf", "role": "Noto Sans SC可变字体，按同目录OFL.txt许可使用"}
   ],
   "source_code": {
@@ -61,16 +62,16 @@
   "reproduction": {
     "working_directory": "项目根目录",
     "dependencies": "Python 3 + lupa==2.8 + Pillow==10.2.0 + numpy==1.26.4；FFmpeg需启用libx264和AAC。使用lupa.lua54保持Lua5.4语义。",
-    "render_command": "python3 -c \"import sys; from lupa.lua54 import LuaRuntime; e=LuaRuntime(unpack_returned_tuples=True).execute(open('scripts/film/Export.lua').read()); exec(compile(e.backend,'film.Export','exec'))\" --mode render --width 1920 --fps 30 --start 0 --end 128 --output assets/video/publishing_visual.mp4",
+    "render_command": "python3 -c \"import sys; from lupa.lua54 import LuaRuntime; e=LuaRuntime(unpack_returned_tuples=True).execute(open('scripts/film/Export.lua').read()); exec(compile(e.backend,'film.Export','exec'))\" --mode render --width 1920 --fps 30 --start 0 --end 138 --output assets/video/publishing_visual.mp4",
     "stills_command": "同上，末尾参数改为 --mode stills --width 1920",
     "audio_command": "同上，末尾参数改为 --mode audio",
     "audit_command": "同上，末尾参数改为 --mode audit --width 1920",
     "path_override": "不在项目根目录时设置PUBLISHING_PROJECT_ROOT。",
     "music_command": "python3 -c \"from lupa.lua54 import LuaRuntime; m=LuaRuntime(unpack_returned_tuples=True).execute(open('scripts/film/Music.lua').read()); exec(compile(m.backend,'film.Music','exec'))\"",
-    "music_score": "assets/audio/music/procedural_score.json；固定种子20261019，120BPM，4/4，64小节，1729个音符事件。",
-    "music_mix": "128秒程序合成音乐与原有程序音效混合，双遍线性响度归一化；实测-16.04 LUFS、真峰值-1.67dBTP。",
-    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme_procedural.wav -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]volume=0.86[m];[1:a]volume=0.55[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9:measured_I=-16.71:measured_TP=-2.21:measured_LRA=4.80:measured_thresh=-26.85:offset=-0.85:linear=true[a]' -map '[a]' -t 128 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix_procedural.m4a",
-    "mux_command": "ffmpeg -i assets/video/publishing_visual.mp4 -i assets/audio/publishing_mix_procedural.m4a -map 0:v:0 -map 1:a:0 -c copy -t 128 -movflags +faststart assets/video/publishing_explainer_1080p.mp4",
+    "music_score": "assets/audio/music/procedural_score.json；固定种子20261019，120BPM，4/4，69小节，2021个音符事件。",
+    "music_mix": "138秒程序合成音乐与原有程序音效混合，双遍线性响度归一化；实测-16.22 LUFS、真峰值-1.64dBTP。",
+    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme_procedural.wav -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]volume=0.86[m];[1:a]volume=0.55[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9[a]' -map '[a]' -t 138 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix_procedural.m4a",
+    "mux_command": "ffmpeg -i assets/video/publishing_visual.mp4 -i assets/audio/publishing_mix_procedural.m4a -map 0:v:0 -map 1:a:0 -c copy -t 138 -movflags +faststart assets/video/publishing_explainer_1080p.mp4",
     "urhox": "修改Lua后先LSP检查，再使用官方build工具构建；不得手动写dist目录。"
   },
   "security": "不提交PAT、凭证、环境变量或内部代理配置。源码与制作素材可提交，临时编码文件不提交。"

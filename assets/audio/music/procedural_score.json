@@ -2,11 +2,11 @@
   "generation": "确定性程序作曲与数字合成；无AI音乐、无外部采样",
   "bpm": 120,
   "meter": "4/4",
-  "bars": 64,
-  "duration": 128.0,
+  "bars": 69,
+  "duration": 138.0,
   "sample_rate": 48000,
   "channels": 2,
-  "notes": 1729,
+  "notes": 2021,
   "seed": 20261019,
   "instruments": [
     "加法合成柔和铺底",
@@ -53,30 +53,30 @@
     },
     {
       "start": 70,
-      "finish": 92,
+      "finish": 94,
       "name": "节奏递进",
       "energy": 0.74
     },
     {
-      "start": 92,
-      "finish": 110,
+      "start": 94,
+      "finish": 112,
       "name": "口碑与价值",
       "energy": 0.5
     },
     {
-      "start": 110,
-      "finish": 120,
+      "start": 112,
+      "finish": 130,
       "name": "合作再现",
       "energy": 0.76
     },
     {
-      "start": 120,
-      "finish": 128,
+      "start": 130,
+      "finish": 138,
       "name": "主题收束",
       "energy": 0.4
     }
   ],
   "peak_dbfs": -1.1105995842560359,
-  "sha256": "0531dc3a40662e38f536268027df1af3fddcf67f96681b4ae1d0629060ab2c3d",
+  "sha256": "ca24f3963e443053bb1795d54b7201391e8fcf316efd11eea02e0efd63d3f187",
   "file": "assets/audio/music/publishing_theme_procedural.wav"
 }

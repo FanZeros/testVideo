@@ -1,8 +1,8 @@
--- 确定性程序作曲：120 BPM，4/4，64小节，完整匹配128秒影片。
+-- 确定性程序作曲：120 BPM，4/4，69小节，完整匹配138秒影片。
 -- 音符、和声、编排均由本文件生成；不读取外部音乐、采样或生成服务。
 local Music = {
     bpm = 120,
-    duration = 128,
+    duration = 138,
     sampleRate = 48000,
     seed = 20261019,
     output = "assets/audio/music/publishing_theme_procedural.wav",
@@ -36,10 +36,10 @@ function Music.BuildScore()
         { start = 24, finish = 44, name = "数据推进", energy = 0.65 },
         { start = 44, finish = 54, name = "榜单高光", energy = 0.90 },
         { start = 54, finish = 70, name = "方法展开", energy = 0.62 },
-        { start = 70, finish = 92, name = "节奏递进", energy = 0.74 },
-        { start = 92, finish = 110, name = "口碑与价值", energy = 0.50 },
-        { start = 110, finish = 120, name = "合作再现", energy = 0.76 },
-        { start = 120, finish = 128, name = "主题收束", energy = 0.40 },
+        { start = 70, finish = 94, name = "节奏递进", energy = 0.74 },
+        { start = 94, finish = 112, name = "口碑与价值", energy = 0.50 },
+        { start = 112, finish = 130, name = "合作再现", energy = 0.76 },
+        { start = 130, finish = 138, name = "主题收束", energy = 0.40 },
     }
     local function energy(at)
         for _, section in ipairs(sections) do
@@ -47,7 +47,7 @@ function Music.BuildScore()
         end
         return 0.2
     end
-    for bar = 0, 59 do
+    for bar = 0, math.ceil(Music.duration/2)-1 do
         local at = bar * 2
         local chord = assert(chords[(bar // 2) % 4 + 1])
         local e = energy(at)
@@ -90,7 +90,7 @@ function Music.BuildScore()
         end
     end
     -- 四小节主题，按和声周期展开；副段改变八度与力度，不引用现成歌曲。
-    for phrase = 0, 14 do
+    for phrase = 0, math.floor((Music.duration-8)/8) do
         local at = phrase * 8
         local motif = assert(motifs[phrase % 4 + 1])
         local e = energy(at)
@@ -103,7 +103,7 @@ function Music.BuildScore()
         end
     end
     -- 44秒与“热门榜第二”切场同步；结尾落在D大调，不硬截循环。
-    for _, at in ipairs({4,17,24,44,60,68,84,110,120}) do
+    for _, at in ipairs({4,17,24,44,60,68,84,94,102,120,130}) do
         note("swell", at - 0.85, 74, 1.9, at == 44 and 0.12 or 0.065, 0)
         note("bell", at, 86, 3.0, at == 44 and 0.095 or 0.055, 0.18)
     end
@@ -112,10 +112,10 @@ function Music.BuildScore()
         note("hat", at, 0, 0.12, 0.035, 0.1)
     end
     for i, pitch in ipairs({50,57,62,66,69,74}) do
-        note("pad", 120, pitch, 6.2, 0.038, (i - 3.5) * 0.17)
-        note("piano", 120 + i * 0.045, pitch, 5.5, 0.11, (i - 3.5) * 0.12)
+        note("pad", 130, pitch, 6.2, 0.038, (i - 3.5) * 0.17)
+        note("piano", 130 + i * 0.045, pitch, 5.5, 0.11, (i - 3.5) * 0.12)
     end
-    for i, pitch in ipairs({78,76,74}) do note("piano", 121 + (i - 1) * 0.75, pitch, 3.8, 0.13, -0.1) end
+    for i, pitch in ipairs({78,76,74}) do note("piano", 131 + (i - 1) * 0.75, pitch, 3.8, 0.13, -0.1) end
     return { events = events, sections = sections, bpm = Music.bpm, duration = Music.duration, sampleRate = Music.sampleRate, seed = Music.seed, output = Music.output }
 end
 
@@ -225,7 +225,7 @@ with wave.open(str(out),'wb') as f:
 sections=[]
 for i in range(1,len(score.sections)+1):
     s=score.sections[i];sections.append({k:s[k] for k in ['start','finish','name','energy']})
-report={'generation':'确定性程序作曲与数字合成；无AI音乐、无外部采样','bpm':score.bpm,'meter':'4/4','bars':64,'duration':duration,'sample_rate':sr,'channels':2,'notes':len(score.events),'seed':score.seed,'instruments':['加法合成柔和铺底','谐波衰减电钢琴','FM拨弦','FM钟音','正弦贝斯','合成底鼓','噪声军鼓','高通噪声踩镲','正弦通鼓','滤波噪声上升音'],'sections':sections,'peak_dbfs':20*math.log10(float(np.max(np.abs(pcm.astype(np.float64)/32768)))),'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'file':str(out.relative_to(ROOT))}
+report={'generation':'确定性程序作曲与数字合成；无AI音乐、无外部采样','bpm':score.bpm,'meter':'4/4','bars':round(duration/2),'duration':duration,'sample_rate':sr,'channels':2,'notes':len(score.events),'seed':score.seed,'instruments':['加法合成柔和铺底','谐波衰减电钢琴','FM拨弦','FM钟音','正弦贝斯','合成底鼓','噪声军鼓','高通噪声踩镲','正弦通鼓','滤波噪声上升音'],'sections':sections,'peak_dbfs':20*math.log10(float(np.max(np.abs(pcm.astype(np.float64)/32768)))),'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'file':str(out.relative_to(ROOT))}
 (ROOT/'assets/audio/music/procedural_score.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 print(json.dumps(report,ensure_ascii=False,indent=2),flush=True)
 ]==]

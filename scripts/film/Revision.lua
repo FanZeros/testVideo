@@ -70,6 +70,142 @@ local steps={
 }
 Revision.steps=steps
 
+-- 多期预约测试 vs 直接上线：折线仅表达节奏差异，不标注真实数值。
+local chart={x0=232,x1=1200,y0=748,y1=410}
+local function chartY(value) return chart.y0-value/100*(chart.y0-chart.y1) end
+local function chartX(p) return chart.x0+p*(chart.x1-chart.x0) end
+local function curveValue(keys,p)
+    if p<=keys[1][1] then return keys[1][2] end
+    for i=2,#keys do
+        local a,b=keys[i-1],keys[i]
+        if p<=b[1] then
+            local f=clamp((p-a[1])/math.max(1e-6,b[1]-a[1]))
+            local s=f*f*(3-2*f)
+            return a[2]+(b[2]-a[2])*s
+        end
+    end
+    return keys[#keys][2]
+end
+local function sampleCurve(keys,count)
+    local pts={}
+    for i=0,count do
+        local p=i/count
+        pts[#pts+1]={chartX(p),chartY(curveValue(keys,p))}
+    end
+    return pts
+end
+local function drawCurve(d,pts,progress,c,a,lw)
+    local q=clamp(progress)*(#pts-1)
+    local n=math.floor(q)
+    local out={}
+    for i=1,math.min(n+1,#pts) do out[#out+1]=pts[i] end
+    if n<#pts-1 then
+        local f=q-n;local p1,p2=pts[n+1],pts[n+2]
+        out[#out+1]={p1[1]+(p2[1]-p1[1])*f,p1[2]+(p2[2]-p1[2])*f}
+    end
+    if #out>=2 then d.path(out,c[1],c[2],c[3],a or 1,lw or 3) end
+    return out
+end
+
+local reserves={{0,10},{.28,26},{.44,38},{.62,54},{.66,78},{.72,86},{1,94}}
+local direct={{0,7},{.62,8},{.66,24},{.76,18},{1,13}}
+local ourPoints=sampleCurve(reserves,120)
+local directPoints=sampleCurve(direct,120)
+
+function Revision.Comparison(d,s,t)
+    enter(d,s.title,112,174,58,C.white,t,.05)
+    enter(d,s.subtitle,116,262,30,C.muted,t,.2)
+    local cardIn=ease((t-.3)/.7)
+    panel(d,112,334,1158,506,cardIn,C.mint)
+    txt(d,"玩家关注与下载趋势",146,352,21,C.muted,cardIn,500)
+    txt(d,"相对表现 · 示意",1236,352,19,C.muted,cardIn,450,"right",180)
+    local axisIn=ease((t-.55)/.7)
+    -- 阶段背景与网格
+    local phases={{0,.28,"预约期"},{.28,.44,"限量测试"},{.44,.62,"不限量测试"},{.62,.72,"首发日"},{.72,1,"首发后"}}
+    for i,v in ipairs(phases) do
+        local x=chartX(v[1]);local w=chartX(v[2])-x
+        if i==1 then rr(d,x,chart.y1,w,chart.y0-chart.y1,C.mint,.045*axisIn,0) end
+        if i==4 then rr(d,x,chart.y1,w,chart.y0-chart.y1,C.gold,.06*axisIn,0) end
+        if i>1 then line(d,x,chart.y1,x,chart.y0,C.border,.5*axisIn,1) end
+    end
+    for i=0,4 do
+        local y=chartY(i*25)
+        line(d,chart.x0,y,chart.x1,y,C.border,(i==0 and .75 or .28)*axisIn,1)
+    end
+    line(d,chart.x0,chart.y0,chart.x1,chart.y0,C.border,.9*axisIn,2)
+    line(d,chart.x0,chart.y1,chart.x0,chart.y0,C.border,.9*axisIn,2)
+    txt(d,"高",chart.x0-26,chart.y1-10,18,C.muted,axisIn,450,"right",40)
+    txt(d,"低",chart.x0-26,chart.y0-14,18,C.muted,axisIn,450,"right",40)
+    for i,v in ipairs(phases) do
+        local p=ease((t-.8-i*.08)/.45)
+        txt(d,v[3],chartX((v[1]+v[2])/2),chart.y0+26,19,i==4 and C.gold or C.muted,p,550,"center",150)
+    end
+    local launchX=chartX(.66)
+    local launchIn=ease((t-3.0)/.5)
+    if launchIn>0 then
+        for i=0,17 do
+            local y=chart.y1+i*19
+            line(d,launchX,y,launchX,y+9,C.gold,.55*launchIn,2)
+        end
+    end
+    -- 我方曲线：预约蓄水、测试验证、首发抬高
+    local ourP=ease((t-1.0)/3.4)
+    if ourP>0 then
+        drawCurve(d,ourPoints,ourP,C.mint,.12,12)
+        local out=drawCurve(d,ourPoints,ourP,C.mint,1,4)
+        for i,v in ipairs(reserves) do
+            if ourP>=v[1] then
+                local a=ease((ourP-v[1])/.12)
+                dot(d,chartX(v[1]),chartY(v[2]),5,C.mint,a)
+            end
+        end
+        if #out>=2 then
+            local last=out[#out]
+            local score=math.exp(-((t*2)%1)*6)
+            dot(d,last[1],last[2],10+score*9,C.mint,.2+score*.25,2)
+            dot(d,last[1],last[2],4,C.mint,1)
+        end
+    end
+    -- 直接上线：上线前几乎无蓄水，首发峰值低且回落更快
+    local directP=ease((t-1.7)/2.3)
+    if directP>0 then
+        drawCurve(d,directPoints,directP,C.muted,.9,3)
+        if directP>=1 then
+            local last=directPoints[#directPoints]
+            dot(d,last[1],last[2],5,C.muted,.9)
+        end
+    end
+    -- 右侧图例与三条结论
+    local rightIn=ease((t-2.6)/.6)
+    panel(d,1295,334,513,506,rightIn)
+    dot(d,1326,374,6,C.mint,rightIn)
+    txt(d,"多期预约测试",1352,358,25,C.white,rightIn,650)
+    txt(d,"我方做法",1352,388,19,C.muted,rightIn,450)
+    dot(d,1326,436,6,C.muted,rightIn)
+    txt(d,"直接上线",1352,420,25,C.white,rightIn,650)
+    txt(d,"普通开发者",1352,450,19,C.muted,rightIn,450)
+    line(d,1326,478,1777,478,C.border,rightIn*.8,1)
+    local notes={
+        {"01","预约期蓄水","提前积累第一批意向玩家"},
+        {"02","测试期验证","用真实反馈修正体验与留存"},
+        {"03","首发日集中","把启动量推到更高起点"},
+    }
+    for i,v in ipairs(notes) do
+        local p=ease((t-3.3-(i-1)*.42)/.5)
+        if p>0 then
+            rr(d,1326,512+(i-1)*99,6,58,C.mint,p*.9,3)
+            txt(d,v[1],1350,505+(i-1)*99,19,C.mint,p,700)
+            txt(d,v[2],1388,501+(i-1)*99,25,C.white,p,650)
+            txt(d,v[3],1350,539+(i-1)*99,20,C.muted,p,450,"left",410)
+        end
+    end
+    local tail=math.exp(-((t*2)%1)*6)
+    dot(d,1770,798,5+tail*3,C.mint,(.4+tail*.3)*rightIn,2)
+    txt(d,"曲线仅表达节奏差异",1770,760,17,C.muted,.75*rightIn,450,"right",180)
+    local take=ease((t-5.4)/.7)
+    txt(d,"预约不是等待，而是把首发日的起点抬高。",960,884,30,C.gold,take,650,"center",1600)
+end
+
 local function stageVisual(d,kind,t,localTime)
     local cx,cy=1441,650
     for i=1,3 do

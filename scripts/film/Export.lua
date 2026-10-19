@@ -17,7 +17,7 @@ P.add_argument('--mode', choices=['stills','render','audio','audit'], default='s
 P.add_argument('--width', type=int, default=1920)
 P.add_argument('--fps', type=int, default=30)
 P.add_argument('--start', type=float, default=0)
-P.add_argument('--end', type=float, default=128)
+P.add_argument('--end', type=float, default=138)
 P.add_argument('--output', default='assets/video/publishing_visual.mp4')
 A = P.parse_args()
 W, H = A.width, round(A.width * 9 / 16)
@@ -118,16 +118,7 @@ d=lua.table_from({k:getattr(c,k) for k in ['background','rect','outline','line',
 
 def frame(t):
     motion.Render(d,t)
-    # 镜头在每段内分三拍推进：建立、推进、强调；转场时快速拉回。
-    scene,localtime,index=film.FindScene(t)
-    progress=min(1,max(0,localtime/scene.duration))
-    pulse=math.exp(-((localtime*2)%1)*8)
-    zoom=.977-.035*progress-.003*pulse
-    offset=(1-zoom)/2
-    c.im=c.im.transform((W,H),Image.Transform.AFFINE,
-        (zoom,0,(offset+.004*math.sin(localtime*.65+index))*W,
-         0,zoom,(offset+.003*math.cos(localtime*.51+index))*H),
-        resample=Image.Resampling.BICUBIC)
+    # 固定机位：不做逐帧缩放、位移或节拍脉冲，避免画面抖动。
     return c.im
 
 if A.mode=='stills':
@@ -162,7 +153,7 @@ elif A.mode=='render':
     if rc:raise SystemExit(rc)
     print('画面完成',str(out),flush=True)
 elif A.mode=='audio':
-    sr=48000;duration=128
+    sr=48000;duration=int(film.duration)
     signal=np.zeros((duration*sr,2),np.float32)
     rng=np.random.default_rng(2026)
     for i in range(2,len(film.scenes)+1):
@@ -175,7 +166,7 @@ elif A.mode=='audio':
         whoosh=(smooth*.35+tone*.035)*env
         at=int((start-.08)*sr)
         signal[at:at+n,0]+=whoosh*.75;signal[at:at+n,1]+=whoosh
-    starts=[25,26.5,28,35,38,46,62,68.75,70.95,73.15,75.35,77.55,80.0,85,94,112,121.3]
+    starts=[25,26.5,28,35,38,46,62,68.75,70.95,73.15,75.35,77.55,80.0,85.2,86.4,87.6,95,104,122,131.3]
     for start in starts:
         n=int(sr*.7);t=np.arange(n)/sr
         freq=784 if start<44 else 523.25

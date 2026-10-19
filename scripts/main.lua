@@ -27,7 +27,7 @@ function Start()
             if player:IsPlaying() then player:Pause() else player:Play() end
         end,
     }
-    timeLabel = UI.Label { text = "00:00 / 02:08", fontSize = 14 }
+    timeLabel = UI.Label { text = "00:00 / " .. FormatTime(Film.duration), fontSize = 14 }
     player = Video.VideoPlayer {
         src = "video/publishing_explainer_1080p.mp4",
         width = "100%", flex = 1, flexShrink = 1,

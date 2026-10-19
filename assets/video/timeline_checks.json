@@ -1,9 +1,9 @@
 {
-  "revision": "1.2-five-stage-motion",
-  "duration": 128,
+  "revision": "1.3-reservation-comparison",
+  "duration": 138,
   "fps": 30,
-  "planned_frames": 3840,
-  "scene_count": 14,
+  "planned_frames": 4140,
+  "scene_count": 15,
   "timeline_continuous": true,
   "five_stages": [
     "预约期",
@@ -59,28 +59,33 @@
       "duration": 16
     },
     {
-      "id": "rep",
+      "id": "comparison",
       "start": 84,
+      "duration": 10
+    },
+    {
+      "id": "rep",
+      "start": 94,
       "duration": 8
     },
     {
       "id": "reputation",
-      "start": 92,
+      "start": 102,
       "duration": 10
     },
     {
       "id": "outcome",
-      "start": 102,
+      "start": 112,
       "duration": 8
     },
     {
       "id": "cooperation",
-      "start": 110,
+      "start": 120,
       "duration": 10
     },
     {
       "id": "closing",
-      "start": 120,
+      "start": 130,
       "duration": 8
     }
   ]

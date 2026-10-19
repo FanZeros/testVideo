@@ -78,7 +78,7 @@ end
 local function chrome(d,s,t,index)
     rect(d,110,66,9,27,C.mint,1,3)
     text(d,"发行实战 / GAME PUBLISHING",134,66,23,C.white,1,650)
-    text(d,string.format("%02d / 14   ·   %s",index,s.chapter),1805,66,20,C.muted,1,500,"right")
+    text(d,string.format("%02d / %02d   ·   %s",index,#Film.scenes,s.chapter),1805,66,20,C.muted,1,500,"right")
     line(d,112,117,1808,117,C.border,0.8,1)
     text(d,s.caption,112,965,20,C.muted,0.92,450,"left",1700)
     rect(d,112,1012,1696,3,C.border,0.6,1)
@@ -326,6 +326,8 @@ function Motion.Render(d,time)
         Revision.Problem(d,s,t)
     elseif s.id=="stages" then
         Revision.Stages(d,s,t)
+    elseif s.id=="comparison" then
+        Revision.Comparison(d,s,t)
     else
         renderers[s.id](d,s,t)
     end
@@ -349,7 +351,7 @@ function Motion.Render(d,time)
         end
     end
     if time<0.8 then rect(d,0,0,1920,1080,C.ink,1-smooth(time/0.8)) end
-    if time>127 then rect(d,0,0,1920,1080,C.ink,smooth((time-127)/1)) end
+    if time>Film.duration-1 then rect(d,0,0,1920,1080,C.ink,smooth((time-(Film.duration-1))/1)) end
 end
 
 return Motion
