@@ -1,6 +1,6 @@
 {
   "title": "让好游戏，被更多玩家看见",
-  "version": "1.0",
+  "version": "1.1-procedural-music",
   "project_type": "商业发行服务动态讲解片",
   "delivery": {
     "master": "assets/video/publishing_explainer_1080p.mp4",
@@ -17,7 +17,7 @@
     "audio_codec": "AAC",
     "audio_sample_rate": 48000,
     "voiceover": false,
-    "audio_style": "原创无歌词电子管弦配乐 + 程序化转场与数据提示音",
+    "audio_style": "完全由代码作曲与数字合成的纯音乐 + 程序化转场与数据提示音；不使用AI音乐或外部采样",
     "color_style": "深海军蓝 / 薄荷青绿 / 香槟金"
   },
   "creative": {
@@ -43,12 +43,13 @@
     {"path": "assets/image/QQ20261019-104942.png", "role": "累计新增用户及历史趋势后台截图", "sha256": "68e9f09dd0350ff6e348fe87a352e3466d5aeb2da199b6939ddc369ee36f23a1"},
     {"path": "assets/image/QQ20261019-092002.png", "role": "2021-05-03 APK下载指标截图", "sha256": "452cf5e6832c68ffecddbb68f0de20d629891fb555b883cb9708dd293c8c440b"},
     {"path": "assets/image/QQ20261019-125858.png", "role": "委托方原始参考图，保留在项目中，不用作热门榜第二的证据", "sha256": "4539c72b16881f9c1779d64ba4d09b58713917e4012066020be3147f50a65868"},
-    {"path": "assets/audio/music/publishing_theme.mp3", "role": "本次生成的原创纯音乐，原始时长约176.8秒；成片剪辑、淡入淡出并混入音效"},
+    {"path": "assets/audio/music/publishing_theme_procedural.wav", "role": "由scripts/film/Music.lua完整作曲与合成；120BPM、4/4、64小节、128秒；无外部采样与AI音乐输入"},
     {"path": "assets/fonts/NotoSansSC.ttf", "role": "Noto Sans SC可变字体，按同目录OFL.txt许可使用"}
   ],
   "source_code": {
     "timeline": "scripts/film/Timeline.lua",
     "motion_graphics": "scripts/film/Motion.lua",
+    "procedural_music": "scripts/film/Music.lua",
     "export": "scripts/film/Export.lua",
     "urhox_player": "scripts/main.lua",
     "notes": "创意内容、图形、动画和时间轴写于Lua 5.4。Export.lua内嵌Python栅格化适配器，用于在当前环境导出标准视频，不启动Web服务，不生成HTML。"
@@ -61,10 +62,11 @@
     "audio_command": "同上，末尾参数改为 --mode audio",
     "audit_command": "同上，末尾参数改为 --mode audit --width 1920",
     "path_override": "不在项目根目录时设置PUBLISHING_PROJECT_ROOT。",
-    "music_mix": "配乐截取0至123秒，在120至123秒淡出；混入128秒音效，末尾淡出；二次响度修正-1.16dB，实测-16.04 LUFS、真峰值-2.62dBTP。",
-    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme.mp3 -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]atrim=0:123,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=1.5,afade=t=out:st=120:d=3,apad=whole_dur=128,volume=0.70[m];[1:a]volume=0.70[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=10,afade=t=out:st=125:d=3[a]' -map '[a]' -t 128 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix.m4a",
-    "mix_correction_command": "ffmpeg -i assets/audio/publishing_mix.m4a -af volume=-1.16dB -c:a aac -b:a 256k assets/audio/publishing_mix_final.m4a",
-    "mux_command": "ffmpeg -i assets/video/publishing_visual.mp4 -i assets/audio/publishing_mix_final.m4a -map 0:v:0 -map 1:a:0 -c copy -t 128 -movflags +faststart assets/video/publishing_explainer_1080p.mp4",
+    "music_command": "python3 -c \"from lupa.lua54 import LuaRuntime; m=LuaRuntime(unpack_returned_tuples=True).execute(open('scripts/film/Music.lua').read()); exec(compile(m.backend,'film.Music','exec'))\"",
+    "music_score": "assets/audio/music/procedural_score.json；固定种子20261019，120BPM，4/4，64小节，1711个音符事件。",
+    "music_mix": "128秒程序合成音乐与原有程序音效混合，双遍线性响度归一化；实测-16.03 LUFS、真峰值-1.62dBTP。",
+    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme_procedural.wav -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]volume=0.86[m];[1:a]volume=0.55[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9:measured_I=-16.74:measured_TP=-2.35:measured_LRA=4.60:measured_thresh=-26.88:offset=-0.85:linear=true[a]' -map '[a]' -t 128 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix_procedural.m4a",
+    "mux_command": "ffmpeg -i assets/video/publishing_visual.mp4 -i assets/audio/publishing_mix_procedural.m4a -map 0:v:0 -map 1:a:0 -c copy -t 128 -movflags +faststart assets/video/publishing_explainer_1080p.mp4",
     "urhox": "修改Lua后先LSP检查，再使用官方build工具构建；不得手动写dist目录。"
   },
   "security": "不提交PAT、凭证、环境变量或内部代理配置。源码与制作素材可提交，临时编码文件不提交。"

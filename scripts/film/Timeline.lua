@@ -5,7 +5,7 @@ local Film = {
     fps = 30,
     duration = 128,
     title = "让好游戏，被更多玩家看见",
-    music = "audio/music/publishing_theme.mp3",
+    music = "audio/music/publishing_theme_procedural.wav",
     output = "video/publishing_explainer_1080p.mp4",
     scenes = {
         { id = "opening", start = 0, duration = 7, chapter = "序章", title = "你的游戏", subtitle = "值得被更多玩家看见", caption = "从开发完成，到真正被发现。" },
