@@ -1,21 +1,21 @@
 {
-  "revision": "1.3-reservation-comparison",
+  "revision": "1.4-conversational-copy",
   "content_changes_detected": true,
   "samples": [
     {
       "from": 68.8,
       "to": 70.8,
-      "mean_pixel_change": 3.487
+      "mean_pixel_change": 3.55
     },
     {
       "from": 71.1,
       "to": 73.1,
-      "mean_pixel_change": 3.569
+      "mean_pixel_change": 3.556
     },
     {
       "from": 80.3,
       "to": 83.5,
-      "mean_pixel_change": 2.544
+      "mean_pixel_change": 2.598
     },
     {
       "from": 84.6,
@@ -25,17 +25,17 @@
     {
       "from": 85.6,
       "to": 87.4,
-      "mean_pixel_change": 1.558
+      "mean_pixel_change": 1.563
     },
     {
       "from": 88.8,
       "to": 89.8,
-      "mean_pixel_change": 0.54
+      "mean_pixel_change": 0.573
     },
     {
       "from": 6,
       "to": 14,
-      "mean_pixel_change": 7.805
+      "mean_pixel_change": 8.103
     }
   ]
 }

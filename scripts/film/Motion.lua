@@ -95,12 +95,12 @@ local function opening(d,s,t)
     end
     icon(d,"chart",1490,525,3.2,C.mint,p,t)
     pill(d,"INDEPENDENT GAME PUBLISHING",116,226,532,C.mint,p)
-    say(d,"你的游戏",110,333,102,C.white,t,0.3,800)
-    say(d,"值得被更多玩家",110,470,86,C.white,t,0.7,750)
+    say(d,"说真的，你的游戏",110,333,96,C.white,t,0.3,800)
+    say(d,"应该被更多玩家",110,470,86,C.white,t,0.7,750)
     say(d,"看见。",110,582,112,C.mint,t,1.1,850)
     local q=reveal(t,1.7)
     rect(d,116,775,65*q,3,C.mint,q)
-    say(d,"TapTap 平台发行服务",205,756,30,C.muted,t,1.7,500)
+    say(d,"TapTap 发行这件事，咱们聊聊",205,756,30,C.muted,t,1.7,500)
 end
 local function problem(d,s,t)
     heading(d,s,t)
@@ -127,9 +127,9 @@ local function problem(d,s,t)
     end
 end
 local function pivot(d,s,t)
-    say(d,"不只把游戏上架",960,260,76,C.white,t,0.2,750,"center")
-    say(d,"更要把发行节奏跑通",960,365,84,C.mint,t,0.7,800,"center")
-    local list={{"曝光入口","target"},{"测试节奏","chart"},{"流量使用","spark"},{"口碑运营","shield"}}
+    say(d,"所以，别急着上架",960,260,76,C.white,t,0.2,750,"center")
+    say(d,"先把发行节奏跑通",960,365,84,C.mint,t,0.7,800,"center")
+    local list={{"让人看见","target"},{"按节奏测试","chart"},{"把流量用对","spark"},{"把口碑守住","shield"}}
     for i,v in ipairs(list) do
         local p=reveal(t,1.2+(i-1)*0.22)
         local x=115+(i-1)*435
@@ -141,7 +141,7 @@ local function pivot(d,s,t)
 end
 local function credentials(d,s,t)
     heading(d,s,t)
-    local data={{9,"年","平台深耕",C.mint},{127,"款","累计发行游戏",C.white},{115,"万+","累计新增用户",C.gold}}
+    local data={{9,"年","一直做 TapTap",C.mint},{127,"款","我们发过的游戏",C.white},{115,"万+","玩家因此认识我们",C.gold}}
     for i,v in ipairs(data) do
         local x=112+(i-1)*580
         local p=reveal(t,0.8+(i-1)*0.35)
@@ -168,15 +168,15 @@ local function evidence(d,s,t)
     end
     local p=reveal(t,1.2)
     card(d,1220,369,590,260,p,C.mint)
-    text(d,"累计新增用户",1252,401,26,C.muted,p,500)
+    text(d,"后台里的累计新增用户",1252,401,26,C.muted,p,500)
     text(d,"1,153,752",1252,447,76,C.mint,p,800,"left",530)
-    text(d,"来自委托方后台原图",1252,558,22,C.muted,p)
+    text(d,"数字就摆在这儿，原图可查",1252,558,22,C.muted,p)
     local q=reveal(t,3.1)
     card(d,1220,655,590,182,q)
-    text(d,"单日 APK 新增下载完成量",1252,680,24,C.muted,q)
+    text(d,"单日新增下载完成量",1252,680,24,C.muted,q)
     text(d,"13,720",1252,719,64,C.gold,q,750)
     text(d,"2021-05-03",1776,783,19,C.muted,q,450,"right")
-    say(d,"真实记录  /  长期积累  /  可追溯案例",115,878,24,C.white,t,2.1,500)
+    say(d,"真实记录，长期积累，也都能追溯",115,878,24,C.white,t,2.1,500)
 end
 local function ranking(d,s,t)
     local p=reveal(t,0.3,1.4)
@@ -186,17 +186,17 @@ local function ranking(d,s,t)
     local out={}
     for i=1,total do out[#out+1]=pts[i] end
     path(d,out,C.gold,p*0.25,12); path(d,out,C.gold,p*0.85,3)
-    say(d,"我们的游戏，曾登上",112,293,47,C.white,t,0.1,600)
+    say(d,"我们做的一款游戏",112,293,47,C.white,t,0.1,600)
     say(d,"热门榜",112,372,99,C.white,t,0.4,800)
     say(d,"第",117,623,70,C.gold,t,0.8,700)
     text(d,"2",308,497+70*(1-p),302,C.gold,p,900,"left",320)
     say(d,"名",578,731,76,C.gold,t,1.1,700)
-    say(d,"一次登榜，是产品与发行共同发力的结果。",116,827,29,C.muted,t,2.2,450,"left",1640)
+    say(d,"能上榜，产品得行，发行也得跟上。",116,827,29,C.muted,t,2.2,450,"left",1640)
     pill(d,"HISTORICAL MILESTONE",1082,782,630,C.gold,reveal(t,1.8))
 end
 local function methods(d,s,t)
     heading(d,s,t)
-    local titles={"曝光申请","多段测试","REP 福利流量","口碑运维"}
+    local titles={"去申请曝光","分阶段测试","用 REP 福利流量","把口碑守住"}
     local kinds={"target","chart","spark","shield"}
     local xs={112,553,994,1435}
     for i=1,4 do
@@ -206,17 +206,17 @@ local function methods(d,s,t)
         icon(d,kinds[i],xs[i]+188,556+40*(1-p),1.3,C.mint,p)
         text(d,titles[i],xs[i]+188,677+40*(1-p),31,C.white,p,650,"center",330)
     end
-    say(d,"四个关键环节，一个完整发行闭环。",960,843,28,C.muted,t,2.4,450,"center")
+    say(d,"四件事连起来，才是一套完整的发行。",960,843,28,C.muted,t,2.4,450,"center")
 end
 local function exposure(d,s,t)
     heading(d,s,t)
     local p=reveal(t,0.7)
     card(d,112,377,705,480,p)
     text(d,"01",151,411,104,C.mint,p,800)
-    text(d,"匹配品类与发行阶段",153,569,36,C.white,p,650)
-    text(d,"准备材料 · 主动申请 · 配合节奏",153,643,27,C.muted,p,500)
-    pill(d,"让合适的玩家，更容易遇见你",152,748,593,C.mint,reveal(t,1.6))
-    local tags={{"新游推荐","新品上线窗口"},{"编辑精选","内容与品质匹配"},{"品类榜单","找到目标受众"},{"限时活动","配合平台节奏"}}
+    text(d,"先看你的品类和阶段",153,569,36,C.white,p,650)
+    text(d,"准备材料、主动申请、配合平台节奏",153,643,27,C.muted,p,500)
+    pill(d,"让对的人，更容易刷到你",152,748,593,C.mint,reveal(t,1.6))
+    local tags={{"新游推荐","刚上线的那波窗口"},{"编辑精选","内容得过得了编辑那关"},{"品类榜单","把你的目标玩家找出来"},{"限时活动","踩准平台的活动节奏"}}
     for i,v in ipairs(tags) do
         local x=874+((i-1)%2)*479
         local y=377+math.floor((i-1)/2)*252
@@ -253,7 +253,7 @@ local function rep(d,s,t)
     circle(d,539,578,228+8*math.sin(t),C.mint,p*0.12,1)
     icon(d,"spark",539,578,1.6,C.mint,p)
     text(d,"REP",539,695,54,C.white,p,750,"center")
-    local actions={{"核对福利资格","先了解适用范围"},{"规划资源使用","把流量放到重要节点"},{"复盘投放表现","依据实际数据优化"}}
+    local actions={{"先搞清楚资格","看看你能用哪些、怎么用"},{"再规划怎么花","把流量留到最重要的节点"},{"用完要复盘","看实际数据，再决定下次怎么投"}}
     for i,v in ipairs(actions) do
         local a=reveal(t,1.0+i*0.4)
         local y=378+(i-1)*161
@@ -268,8 +268,8 @@ local function reputation(d,s,t)
     heading(d,s,t)
     local p=reveal(t,0.7)
     icon(d,"shield",479,581,3.4,C.mint,p)
-    text(d,"口碑，是长期资产",479,800,31,C.white,p,650,"center")
-    local data={{"日常跟进","理解玩家真实体验"},{"及时响应","反馈问题，推动修复"},{"合规申诉","按平台规则处理恶意评价"},{"持续维护","鼓励真实反馈，不操控评分"}}
+    text(d,"口碑这东西，急不来",479,800,31,C.white,p,650,"center")
+    local data={{"平时多看看","玩家真实体验是什么样"},{"有问题就回","该修就修，别拖着"},{"恶意差评，按规则申诉","走平台流程，不硬碰"},{"长期维护","要真实反馈，不刷分"}}
     for i,v in ipairs(data) do
         local a=reveal(t,0.7+i*0.35)
         local x=885+((i-1)%2)*474
@@ -281,10 +281,10 @@ local function reputation(d,s,t)
     end
 end
 local function outcome(d,s,t)
-    say(d,"不承诺每一款都是爆款",960,242,76,C.white,t,0.2,750,"center")
-    say(d,"只把每个增长机会",960,352,66,C.muted,t,0.7,600,"center")
+    say(d,"我们不敢说，每款都能爆",960,242,76,C.white,t,0.2,750,"center")
+    say(d,"但每个增长机会",960,352,66,C.muted,t,0.7,600,"center")
     say(d,"做得更扎实",960,451,94,C.mint,t,1.1,800,"center")
-    local items={"更多有效曝光","更清晰的发行节奏","更可持续的口碑"}
+    local items={"让更多人真正看见","把发行节奏理清楚","让口碑能一直走下去"}
     for i,v in ipairs(items) do
         local p=reveal(t,1.7+(i-1)*0.23)
         local x=170+(i-1)*557
@@ -294,7 +294,7 @@ local function outcome(d,s,t)
 end
 local function cooperation(d,s,t)
     heading(d,s,t)
-    local data={{"01 / REVENUE SHARE","合作分成","前期投入发行资源","不先收服务费 · 按约定分成","风险共担，利益绑定",C.mint},{"02 / MANAGED SERVICE","付费服务","一次性支付服务费用","预约 / 测试 / 首发 / 口碑运维","全流程托管，按约定交付",C.gold}}
+    local data={{"01 / REVENUE SHARE","合作分成","前期我们先投入资源","不先收服务费，上线后按约定分成","风险一起担，利益绑在一起",C.mint},{"02 / MANAGED SERVICE","付费服务","一次性付服务费","预约、测试、首发、口碑，我们全程管","按约定交付，你省心",C.gold}}
     for i,v in ipairs(data) do
         local x=112+(i-1)*864
         local a=reveal(t,0.8+(i-1)*0.35)
@@ -308,13 +308,13 @@ local function cooperation(d,s,t)
     end
 end
 local function closing(d,s,t)
-    pill(d,"下一次增长，从一次沟通开始",686,220,548,C.mint,reveal(t,0.1))
-    say(d,"你的下一款游戏",960,322,83,C.white,t,0.2,750,"center")
-    say(d,"值得一次专业发行",960,432,94,C.mint,t,0.6,850,"center")
+    pill(d,"下次增长，从聊一聊开始",686,220,548,C.mint,reveal(t,0.1))
+    say(d,"下一款游戏",960,322,83,C.white,t,0.2,750,"center")
+    say(d,"咱们认真做一次发行",960,432,94,C.mint,t,0.6,850,"center")
     local a=reveal(t,1.2)
     rect(d,579,620,762,103,C.mint,a,52)
-    text(d,"发送游戏信息，免费发行诊断",960,646,37,C.ink,a,750,"center",730)
-    say(d,"准备上线，或上线后增长遇阻，都可以先聊聊。",960,781,28,C.muted,t,1.7,450,"center")
+    text(d,"把游戏信息发来，先免费诊断",960,646,37,C.ink,a,750,"center",730)
+    say(d,"准备上线，或者上线后一直起不来，都可以先聊聊。",960,781,28,C.muted,t,1.7,450,"center")
     say(d,"9 年实战   /   127 款发行   /   115 万+用户增长经验",960,858,25,C.gold,t,2.1,600,"center")
 end
 local renderers={opening=opening,problem=problem,pivot=pivot,credentials=credentials,evidence=evidence,ranking=ranking,methods=methods,exposure=exposure,stages=stages,rep=rep,reputation=reputation,outcome=outcome,cooperation=cooperation,closing=closing}

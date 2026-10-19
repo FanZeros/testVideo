@@ -20,17 +20,17 @@ local function panel(d,x,y,w,h,a,c)
 end
 
 function Revision.Problem(d,s,t)
-    enter(d,"上架之后，真正的困境是——",112,177,57,C.white,t,.12)
+    enter(d,"说真的，上架之后你可能会发现——",112,177,57,C.white,t,.12)
     local phase=math.min(3,math.floor(math.max(0,t-1.1)/3.4))
     local p=ease((t-.5)/1.4)
     txt(d,tostring(math.floor(200*p)).."+",112,289,149,C.white,1,850,"left",530)
-    txt(d,"款游戏，挤在同一张列表",119,472,34,C.muted,1,550)
+    txt(d,"款游戏，全挤在同一张列表里",119,472,34,C.muted,1,550)
     local q=ease((t-1.6)/.9)
     txt(d,"只有前",118,568,38,C.white,q,600)
     txt(d,tostring(math.floor(20*q)),310,523+30*(1-q),150,C.mint,q,850,"left",300)
     txt(d,"个",531,617,39,C.white,q,650)
-    enter(d,"达到三位数流量",119,733,54,C.mint,t,2.1,"left",700)
-    local labels={"大量新游同时争夺注意力","流量集中在列表头部","更多作品，很难获得第一眼","不只上架，更要争取被发现"}
+    enter(d,"才勉强有三位数流量",119,733,54,C.mint,t,2.1,"left",700)
+    local labels={"每天都有新游戏在抢同一批玩家","流量基本都堆在列表最上面","排在后面，玩家根本刷不到你","所以，光把游戏上架是不够的"}
     local x0,y0=943,296
     txt(d,"头部 20 个",950,226,29,C.mint,ease((t-1.5)/.5),650)
     txt(d,"其余游戏",1768,226,25,C.muted,1,500,"right")
@@ -57,16 +57,16 @@ function Revision.Problem(d,s,t)
     if t>7 then
         local a=ease((t-7)/.7)
         line(d,927,354,927,770,C.red,a*.6,2)
-        txt(d,"你的游戏，会留在哪一层？",118,865,32,C.gold,a,650,"left",720)
+        txt(d,"你的游戏，会被刷到第几屏？",118,865,32,C.gold,a,650,"left",720)
     end
 end
 
 local steps={
-    {name="预约期",short="预约期",goal="积累第一批意向玩家",action="建立曝光入口，沉淀预约",metric="关注预约量与玩家来源",kind="reserve"},
-    {name="玩家预约反馈",short="玩家预约反馈",goal="先听见玩家，再做决策",action="收集期待与疑问，调整沟通",metric="关注真实需求与预约反馈",kind="feedback"},
-    {name="限量测试",short="限量测试",goal="小范围验证，及时修正",action="验证核心体验，收集问题",metric="关注留存、体验与缺陷",kind="limited"},
-    {name="不限量测试",short="不限量测试",goal="扩大验证，积累启动量",action="承接更多玩家，复盘数据",metric="关注规模化反馈与表现",kind="open"},
-    {name="首发",short="首发",goal="集中资源，正式启动",action="整合曝光与福利流量",metric="关注首日表现与后续承接",kind="launch"},
+    {name="预约期",short="预约期",goal="先攒下第一批想玩的人",action="把入口搭好，把预约沉淀下来",metric="盯预约量，也看人从哪来",kind="reserve"},
+    {name="玩家预约反馈",short="玩家预约反馈",goal="先听玩家怎么说",action="把期待和疑问收回来，再调整说法",metric="看他们真正在意什么",kind="feedback"},
+    {name="限量测试",short="限量测试",goal="先小范围试一试",action="把核心体验跑一遍，把问题收上来",metric="盯留存、体验和 bug",kind="limited"},
+    {name="不限量测试",short="不限量测试",goal="没问题，就放大范围",action="接住更多玩家，边跑边复盘",metric="看放大之后还稳不稳",kind="open"},
+    {name="首发",short="首发",goal="最后，集中火力首发",action="把曝光和福利流量都用上",metric="盯首日，也盯后面接不接得住",kind="launch"},
 }
 Revision.steps=steps
 
@@ -180,15 +180,15 @@ function Revision.Comparison(d,s,t)
     panel(d,1295,334,513,506,rightIn)
     dot(d,1326,374,6,C.mint,rightIn)
     txt(d,"多期预约测试",1352,358,25,C.white,rightIn,650)
-    txt(d,"我方做法",1352,388,19,C.muted,rightIn,450)
+    txt(d,"我们的做法",1352,388,19,C.muted,rightIn,450)
     dot(d,1326,436,6,C.muted,rightIn)
     txt(d,"直接上线",1352,420,25,C.white,rightIn,650)
-    txt(d,"普通开发者",1352,450,19,C.muted,rightIn,450)
+    txt(d,"很多开发者的做法",1352,450,19,C.muted,rightIn,450)
     line(d,1326,478,1777,478,C.border,rightIn*.8,1)
     local notes={
-        {"01","预约期蓄水","提前积累第一批意向玩家"},
-        {"02","测试期验证","用真实反馈修正体验与留存"},
-        {"03","首发日集中","把启动量推到更高起点"},
+        {"01","先攒人","预约期就把第一批想玩的人攒下来"},
+        {"02","再验证","用真实反馈把体验和留存修好"},
+        {"03","再集中爆发","首发那天，起点已经不一样了"},
     }
     for i,v in ipairs(notes) do
         local p=ease((t-3.3-(i-1)*.42)/.5)
@@ -203,7 +203,7 @@ function Revision.Comparison(d,s,t)
     dot(d,1770,798,5+tail*3,C.mint,(.4+tail*.3)*rightIn,2)
     txt(d,"曲线仅表达节奏差异",1770,760,17,C.muted,.75*rightIn,450,"right",180)
     local take=ease((t-5.4)/.7)
-    txt(d,"预约不是等待，而是把首发日的起点抬高。",960,884,30,C.gold,take,650,"center",1600)
+    txt(d,"预约不是干等，是把首发那天的起点抬高一截。",960,884,30,C.gold,take,650,"center",1600)
 end
 
 local function stageVisual(d,kind,t,localTime)
@@ -221,7 +221,7 @@ local function stageVisual(d,kind,t,localTime)
             line(d,x+24,y+48,x+179,y+48,C.muted,p*.7,2)
             line(d,x+24,y+68,x+97,y+68,C.mint,p,2)
         end
-        txt(d,"反馈 → 调整",cx,834,29,C.mint,1,650,"center")
+        txt(d,"听完，就调整",cx,834,29,C.mint,1,650,"center")
     elseif kind=="launch" then
         local pts={}
         for i=0,45 do
@@ -236,7 +236,7 @@ local function stageVisual(d,kind,t,localTime)
             local a=localTime*1.5+i*.9
             dot(d,1690+math.cos(a)*40,455+math.sin(a)*40,3,C.gold,.6)
         end
-        txt(d,"集中启动",cx,834,29,C.mint,1,650,"center")
+        txt(d,"集中火力",cx,834,29,C.mint,1,650,"center")
     else
         local n=kind=="limited" and 12 or (kind=="open" and 36 or 20)
         local visible=math.floor(n*ease((localTime+.1)/1.35))
@@ -247,13 +247,13 @@ local function stageVisual(d,kind,t,localTime)
             dot(d,x,y,13,C.mint,on and .95 or .15)
             line(d,x-19,y+23,x+19,y+23,C.mint,on and .6 or .1,5)
         end
-        txt(d,kind=="limited" and "小范围验证" or (kind=="open" and "扩大验证范围" or "预约持续积累"),cx,834,29,C.mint,1,650,"center")
+        txt(d,kind=="limited" and "先小范围试" or (kind=="open" and "放大范围验证" or "预约慢慢攒"),cx,834,29,C.mint,1,650,"center")
     end
 end
 
 function Revision.Stages(d,s,t)
     enter(d,s.title,112,174,62,C.white,t,.05)
-    enter(d,"五个环节，逐步验证，而不是一次押注。",116,266,31,C.muted,t,.22)
+    enter(d,"五个环节，一步一步来，别一次押注。",116,266,31,C.muted,t,.22)
     local active=math.min(5,math.floor(math.max(0,t-.75)/2.2)+1)
     local summary=t>=12.0
     -- 每个阶段切换的瞬间，游标必须恰好抵达对应节点。
@@ -294,11 +294,11 @@ function Revision.Stages(d,s,t)
             panel(d,x,503+60*(1-p),312,273,p,i==5 and C.gold or C.mint)
             txt(d,string.format("%02d",i),x+27,528+60*(1-p),49,C.mint,p,750)
             txt(d,v.name,x+27,607+60*(1-p),i==2 and 29 or 33,C.white,p,700,"left",266)
-            local desc={"意向积累","收集与调整","小范围验证","扩大验证","集中启动"}
+            local desc={"攒人","听反馈","小范围试","放大验证","集中首发"}
             txt(d,desc[i],x+27,694+60*(1-p),24,C.muted,p,500)
             if i<5 then arrow(d,x+320,638,x+337,C.mint,p) end
         end
-        enter(d,"预约不是结束，反馈才是下一步的起点。",960,830,34,C.gold,t,12.8,"center",1600)
+        enter(d,"预约只是开始，玩家的反馈才是下一步的起点。",960,830,34,C.gold,t,12.8,"center",1600)
     end
 end
 
@@ -308,7 +308,7 @@ function Revision.Accents(d,id,t,duration)
     if id=="opening" then
         local grow=ease(t/2.5)
         arrow(d,1210,823,1210+540*grow,C.mint,.45)
-        txt(d,"从作品 → 到玩家",1480,867,27,C.mint,.85,600,"center")
+        txt(d,"从做完 → 到被看见",1480,867,27,C.mint,.85,600,"center")
     elseif id=="pivot" or id=="methods" then
         local idx=math.min(3,math.floor(t/.9)%4)
         local x=(id=="pivot" and 115 or 112)+idx*(id=="pivot" and 435 or 441)
@@ -318,7 +318,7 @@ function Revision.Accents(d,id,t,duration)
         local i=math.min(2,math.floor(math.max(0,t-3)/1.9))
         local x=112+i*580
         line(d,x+39,761,x+39+456*ease(((t-3)%1.9)/1.2),761,i==2 and C.gold or C.mint,.85,4)
-        if t>5.8 then txt(d,"发行经验 → 真实积累",960,872,26,C.mint,ease((t-5.8)/.5),600,"center") end
+        if t>5.8 then txt(d,"这些，都是一点点攒出来的",960,872,26,C.mint,ease((t-5.8)/.5),600,"center") end
     elseif id=="evidence" then
         if t>2 then
             local x=158+((t-2)*135)%972
@@ -330,7 +330,7 @@ function Revision.Accents(d,id,t,duration)
         local y=775-560*p
         dot(d,x,y,6,C.gold,.9)
         dot(d,1690,218,16+beat*19,C.gold,.2+beat*.3,2)
-        if t>5 then txt(d,"不是偶然看见，是一步步走到前面",1255,870,24,C.gold,ease((t-5)/.5),550,"center",1030) end
+        if t>5 then txt(d,"不是运气，是一步一步走到前面",1255,870,24,C.gold,ease((t-5)/.5),550,"center",1030) end
     elseif id=="exposure" then
         local idx=math.floor(t/1.4)%4
         local x=874+(idx%2)*479;local y=377+math.floor(idx/2)*252
@@ -355,7 +355,7 @@ function Revision.Accents(d,id,t,duration)
         local left=t<4.5
         local x=left and 112 or 976
         box(d,x-3,379,838,483,left and C.mint or C.gold,.35+beat*.25,25,2)
-        if t>6 then txt(d,"选择适合产品阶段与预算的合作方式",960,898,25,C.mint,ease((t-6)/.5),600,"center") end
+        if t>6 then txt(d,"选适合你现在阶段和预算的方式",960,898,25,C.mint,ease((t-6)/.5),600,"center") end
     elseif id=="closing" then
         local p=(t*.5)%1
         box(d,579-14*p,620-9*p,762+28*p,103+18*p,C.mint,(1-p)*.45,58,2)

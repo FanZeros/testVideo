@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "revision": "1.3-reservation-comparison",
+  "revision": "1.4-conversational-copy",
   "verified_on": "2026-10-19",
   "master": {
     "path": "assets/video/publishing_explainer_1080p.mp4",
@@ -15,8 +15,8 @@
     "audio_sample_rate": 48000,
     "audio_channels": 2,
     "audio_duration_seconds": 138,
-    "size_bytes": 20211426,
-    "sha256": "dc2a6ff6de6b819619bab41f0acf0236804546e3103f68288337566f92be43aa",
+    "size_bytes": 20331747,
+    "sha256": "c9ec3d9a3f8f26108626d1de7be10bfafdd35cf019f91a6aad1cb1469b0075c0",
     "complete_decode": "正式交付路径执行ffmpeg -v error -i master -f null -，退出码0，无错误输出。"
   },
   "share": {
@@ -31,8 +31,8 @@
     "audio_codec": "aac",
     "audio_sample_rate": 48000,
     "audio_channels": 2,
-    "size_bytes": 8647539,
-    "sha256": "565663c33e60dabc320e6af1938f711ae2cc385ea83973a2468afdba80632ae6",
+    "size_bytes": 8716743,
+    "sha256": "acc2c211a1c3deb29e14560b20cb701a3069e7b6289653e20bf05baf40bc54d7",
     "complete_decode": "正式交付路径执行ffmpeg -v error -i share -f null -，退出码0，无错误输出。"
   },
   "audio": {
@@ -63,15 +63,16 @@
     "page_9_interval_seconds": [68, 84],
     "five_stage_order": ["预约期", "玩家预约反馈", "限量测试", "不限量测试", "首发"],
     "five_stage_presentation": "逐步详情与对应动态图形，80秒起切换为五步总览；已校正阶段进度、提示音对齐和总览切换空帧。",
-    "reservation_comparison": "84至94秒新增双折线对比：薄荷色为我方多期预约测试曲线，灰色为普通开发者直接上线曲线；横轴为预约期、限量测试、不限量测试、首发日、首发后，纵轴不标注数值。",
+    "reservation_comparison": "84至94秒新增双折线对比：薄荷色为我方多期预约测试曲线，灰色为直接上线曲线；横轴为预约期、限量测试、不限量测试、首发日、首发后，纵轴不标注数值。",
     "reservation_comparison_disclaimer": "画面标注“示意曲线 · 非真实后台数据”，图内注明“相对表现 · 示意”“曲线仅表达节奏差异”，不承诺固定增长幅度。",
     "motion_changes": "全片改为固定机位，移除逐帧缩放、位移与节拍脉冲；保留三类切场、章节重点交接、数据递增、扫描与阶段动态示意。新增对比段的双曲线绘制、首发标记、结论递进与落点脉冲。变化抽样见motion_checks.json。",
+    "copy_style": "全片标题、字幕、卡片与结论改为对话式口语表达；合规免责声明与数据口径保持不变。",
     "stability_check": {
       "method": "对同一场景内相隔1秒的标题区域及相邻帧静态区域计算平均绝对灰度差。",
       "old_title_region_1s_mean_abs_diff": 15.127,
-      "new_title_region_1s_mean_abs_diff": 0.006,
+      "new_title_region_1s_mean_abs_diff": 0.007,
       "old_adjacent_frame_static_region_diff": 0.126,
-      "new_adjacent_frame_static_region_diff": 0.008,
+      "new_adjacent_frame_static_region_diff": 0.0071,
       "conclusion": "旧版逐帧推镜与正弦位移造成整幅画面持续抖动；新版固定机位后静态区域几乎无变化。"
     },
     "source_image_metrics": "累计新增用户1,153,752；2021-05-03 APK新增下载完成量13,720，两者没有混同。",
