@@ -1,0 +1,48 @@
+{
+  "$schema": "../schemas/settings.schema.json",
+  "sources": {
+    "engine": {
+      "tag": "stable"
+    },
+    "engine-res": {
+      "tag": "stable"
+    },
+    "urhox-libs": {
+      "tag": "1.0"
+    },
+    "official-res": {
+      "tag": "stable"
+    }
+  },
+  "build": {
+    "generate_fs_path": true,
+    "output_dir": "../dist",
+    "asset_dirs": [
+      "../assets",
+      "../scripts"
+    ],
+    "asset_ignores": [
+      "../assets/fonts",
+      "../assets/audio",
+      "../assets/image/film",
+      "../assets/video/production",
+      "../assets/video/verification"
+    ]
+  },
+  "@runtime": {
+    "multiplayer": {
+      "enabled": false,
+      "max_players": 4,
+      "background_match": false,
+      "match_info": {
+        "desc_name": "free_match",
+        "immediately_start": false,
+        "match_timeout": 60,
+        "player_number": 1
+      },
+      "persistent_world": {
+        "enabled": false
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "verified_on": "2026-10-19",
+  "master": {
+    "path": "assets/video/publishing_explainer_1080p.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "video_frames": 3840,
+    "duration_seconds": 128,
+    "video_codec": "h264",
+    "pixel_format": "yuv420p",
+    "audio_codec": "aac",
+    "audio_sample_rate": 48000,
+    "audio_channels": 2,
+    "audio_duration_seconds": 128,
+    "size_bytes": 52213763,
+    "sha256": "b5dc27ab881f6c08172344e16887ae3cec8aa742499a78d2edea3ce5f9bddadf",
+    "complete_decode": "ffmpeg -v error -i master -f null -，退出码0，无错误输出"
+  },
+  "share": {
+    "path": "assets/video/publishing_explainer_720p.mp4",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "video_frames": 3840,
+    "duration_seconds": 128,
+    "video_codec": "h264",
+    "pixel_format": "yuv420p",
+    "audio_codec": "aac",
+    "audio_sample_rate": 48000,
+    "audio_channels": 2,
+    "size_bytes": 14107526,
+    "sha256": "67c12381c6703d24095041cf3086cf832771cfad9a347fc7bd4fdcb531276d36",
+    "complete_decode": "ffmpeg -v error -i share -f null -，退出码0，无错误输出"
+  },
+  "audio": {
+    "voiceover": false,
+    "source": "用户已选择不使用配音；成片仅使用本次生成纯音乐及程序化音效，没有混入三份试音。",
+    "measured_integrated_lufs": -16.04,
+    "measured_true_peak_dbtp": -2.62,
+    "measurement_source": "assets/audio/publishing_mix_final.m4a",
+    "measurement_tool": "FFmpeg loudnorm分析"
+  },
+  "content_checks": {
+    "scene_count": 14,
+    "lua_runtime": "5.4",
+    "timeline_continuity": "通过",
+    "boundary_cases": 11,
+    "keyframe_layout_checks": 56,
+    "text_width_overflows": 0,
+    "actual_encoded_frame_visual_checks": [40, 48, 123],
+    "source_image_metrics": "累计新增用户1,153,752；2021-05-03 APK新增下载完成量13,720，两者没有混同。",
+    "historical_rank": "最高热门榜第二由委托方提供，画面未伪造榜单截图。",
+    "platform_identity": "已注明独立服务，非TapTap官方服务或效果保证。",
+    "raw_document": "保留用户原稿用于溯源；原稿中的固定效果承诺没有作为成片保证使用。"
+  },
+  "code_checks": {
+    "lua_syntax": "通过",
+    "embedded_python_ast": "通过",
+    "lsp_error_count": 0,
+    "official_build": "通过",
+    "delivery_secret_scan": "未发现GitHub PAT、私钥或URL内嵌式凭证"
+  },
+  "limitations": [
+    "未以实际浏览器交互验收UrhoX播放器；以最终MP4全片解码和关键帧视觉检查验收成片。",
+    "对经营数据采用委托方口径，未进行外部审计。",
+    "未提供联系方式，结尾未虚构二维码、电话号码或账号。"
+  ]
+}

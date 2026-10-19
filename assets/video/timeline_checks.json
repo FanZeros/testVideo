@@ -1,0 +1,94 @@
+{
+  "lua": "5.4",
+  "duration": 128,
+  "fps": 30,
+  "planned_frames": 3840,
+  "scene_count": 14,
+  "boundaries_passed": 11,
+  "checks": [
+    {
+      "id": "opening",
+      "start": 0,
+      "end": 7,
+      "reading_seconds": 7
+    },
+    {
+      "id": "problem",
+      "start": 7,
+      "end": 15,
+      "reading_seconds": 8
+    },
+    {
+      "id": "pivot",
+      "start": 15,
+      "end": 23,
+      "reading_seconds": 8
+    },
+    {
+      "id": "credentials",
+      "start": 23,
+      "end": 33,
+      "reading_seconds": 10
+    },
+    {
+      "id": "evidence",
+      "start": 33,
+      "end": 44,
+      "reading_seconds": 11
+    },
+    {
+      "id": "ranking",
+      "start": 44,
+      "end": 53,
+      "reading_seconds": 9
+    },
+    {
+      "id": "methods",
+      "start": 53,
+      "end": 60,
+      "reading_seconds": 7
+    },
+    {
+      "id": "exposure",
+      "start": 60,
+      "end": 70,
+      "reading_seconds": 10
+    },
+    {
+      "id": "stages",
+      "start": 70,
+      "end": 82,
+      "reading_seconds": 12
+    },
+    {
+      "id": "rep",
+      "start": 82,
+      "end": 92,
+      "reading_seconds": 10
+    },
+    {
+      "id": "reputation",
+      "start": 92,
+      "end": 102,
+      "reading_seconds": 10
+    },
+    {
+      "id": "outcome",
+      "start": 102,
+      "end": 110,
+      "reading_seconds": 8
+    },
+    {
+      "id": "cooperation",
+      "start": 110,
+      "end": 120,
+      "reading_seconds": 10
+    },
+    {
+      "id": "closing",
+      "start": 120,
+      "end": 128,
+      "reading_seconds": 8
+    }
+  ]
+}

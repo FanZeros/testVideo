@@ -1,0 +1,71 @@
+{
+  "title": "让好游戏，被更多玩家看见",
+  "version": "1.0",
+  "project_type": "商业发行服务动态讲解片",
+  "delivery": {
+    "master": "assets/video/publishing_explainer_1080p.mp4",
+    "preview": "assets/video/publishing_explainer_720p.mp4",
+    "poster": "assets/image/film/cover.jpg",
+    "storyboard": "assets/image/film/storyboard.jpg",
+    "subtitle": "assets/video/publishing_explainer.srt",
+    "resolution": "1920x1080",
+    "aspect_ratio": "16:9",
+    "fps": 30,
+    "duration_seconds": 128,
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "audio_codec": "AAC",
+    "audio_sample_rate": 48000,
+    "voiceover": false,
+    "audio_style": "原创无歌词电子管弦配乐 + 程序化转场与数据提示音",
+    "color_style": "深海军蓝 / 薄荷青绿 / 香槟金"
+  },
+  "creative": {
+    "hook": "你的游戏，值得被更多玩家看见",
+    "structure": ["问题", "方法", "经验", "数据", "热门榜第二历史高光", "四大发行方法", "价值边界", "合作方式", "免费诊断引导"],
+    "motion": ["错峰文字升入与透明度动画", "数据计数递增", "粒子漂移", "轨道运动", "增长路径分段绘制", "阶段时间线推进", "数据原图扫描和局部叠加", "章节扫场转场", "全片镜头式慢推微移"],
+    "no_voice_design": "所有核心内容直接呈现于画面；短句、分层信息与足够停留时间，不依赖旁白补充信息。",
+    "call_to_action": "发送游戏信息，免费发行诊断",
+    "contact_note": "未提供联系方式，不虚构二维码、账号、网址或电话号码。"
+  },
+  "claims": {
+    "9_years": "来自委托方文档，2017年至2026年。",
+    "127_games": "来自委托方文档，未作外部审计。",
+    "1150000_plus_users": "文档口径；后台原图显示选定周期内新增1,153,752。",
+    "13720_daily_apk_completions": "原图时间2021-05-03，指标为APK新增下载完成量，不写成独立用户或全平台总下载。",
+    "ranking_number_2": "来自委托方明确补充：游戏最高到热门榜单第二；当前没有对应榜单截图。片中标注服务方提供、非当前榜单截图、不构成排名承诺。",
+    "removed_unverified_market_stats": "不将每天200款新游、首日热度通过率不足10%等未提供可核实出处的数据包装成第三方事实。",
+    "no_guarantees": "未承诺固定下载量、固定评分、固定榜位或保证获得官方资源。",
+    "platform_independence": "独立发行服务介绍，非TapTap官方服务或效果保证。"
+  },
+  "source_assets": [
+    {"path": "docs/新建 文本文档.txt", "role": "委托方原始发行服务文案"},
+    {"path": "assets/image/QQ20261019-104942.png", "role": "累计新增用户及历史趋势后台截图", "sha256": "68e9f09dd0350ff6e348fe87a352e3466d5aeb2da199b6939ddc369ee36f23a1"},
+    {"path": "assets/image/QQ20261019-092002.png", "role": "2021-05-03 APK下载指标截图", "sha256": "452cf5e6832c68ffecddbb68f0de20d629891fb555b883cb9708dd293c8c440b"},
+    {"path": "assets/image/QQ20261019-125858.png", "role": "委托方原始参考图，保留在项目中，不用作热门榜第二的证据", "sha256": "4539c72b16881f9c1779d64ba4d09b58713917e4012066020be3147f50a65868"},
+    {"path": "assets/audio/music/publishing_theme.mp3", "role": "本次生成的原创纯音乐，原始时长约176.8秒；成片剪辑、淡入淡出并混入音效"},
+    {"path": "assets/fonts/NotoSansSC.ttf", "role": "Noto Sans SC可变字体，按同目录OFL.txt许可使用"}
+  ],
+  "source_code": {
+    "timeline": "scripts/film/Timeline.lua",
+    "motion_graphics": "scripts/film/Motion.lua",
+    "export": "scripts/film/Export.lua",
+    "urhox_player": "scripts/main.lua",
+    "notes": "创意内容、图形、动画和时间轴写于Lua 5.4。Export.lua内嵌Python栅格化适配器，用于在当前环境导出标准视频，不启动Web服务，不生成HTML。"
+  },
+  "reproduction": {
+    "working_directory": "项目根目录",
+    "dependencies": "Python 3 + lupa==2.8 + Pillow==10.2.0 + numpy==1.26.4；FFmpeg需启用libx264和AAC。使用lupa.lua54保持Lua5.4语义。",
+    "render_command": "python3 -c \"import sys; from lupa.lua54 import LuaRuntime; e=LuaRuntime(unpack_returned_tuples=True).execute(open('scripts/film/Export.lua').read()); exec(compile(e.backend,'film.Export','exec'))\" --mode render --width 1920 --fps 30 --start 0 --end 128 --output assets/video/publishing_visual.mp4",
+    "stills_command": "同上，末尾参数改为 --mode stills --width 1920",
+    "audio_command": "同上，末尾参数改为 --mode audio",
+    "audit_command": "同上，末尾参数改为 --mode audit --width 1920",
+    "path_override": "不在项目根目录时设置PUBLISHING_PROJECT_ROOT。",
+    "music_mix": "配乐截取0至123秒，在120至123秒淡出；混入128秒音效，末尾淡出；二次响度修正-1.16dB，实测-16.04 LUFS、真峰值-2.62dBTP。",
+    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme.mp3 -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]atrim=0:123,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=1.5,afade=t=out:st=120:d=3,apad=whole_dur=128,volume=0.70[m];[1:a]volume=0.70[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=10,afade=t=out:st=125:d=3[a]' -map '[a]' -t 128 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix.m4a",
+    "mix_correction_command": "ffmpeg -i assets/audio/publishing_mix.m4a -af volume=-1.16dB -c:a aac -b:a 256k assets/audio/publishing_mix_final.m4a",
+    "mux_command": "ffmpeg -i assets/video/publishing_visual.mp4 -i assets/audio/publishing_mix_final.m4a -map 0:v:0 -map 1:a:0 -c copy -t 128 -movflags +faststart assets/video/publishing_explainer_1080p.mp4",
+    "urhox": "修改Lua后先LSP检查，再使用官方build工具构建；不得手动写dist目录。"
+  },
+  "security": "不提交PAT、凭证、环境变量或内部代理配置。源码与制作素材可提交，临时编码文件不提交。"
+}

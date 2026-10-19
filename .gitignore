@@ -66,3 +66,12 @@ CLAUDE.md
 /.claude
 /.codex
 /.opencode
+
+# 本地认证、临时渲染帧和中间视频（最终成片始终入库）
+.git-credentials
+.env
+.env.*
+.project/*voice*key*
+assets/video/production/
+assets/video/verification/
+assets/video/publishing_visual.mp4
