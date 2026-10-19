@@ -118,10 +118,15 @@ d=lua.table_from({k:getattr(c,k) for k in ['background','rect','outline','line',
 
 def frame(t):
     motion.Render(d,t)
-    # 摄影机式慢推与微平移贯穿整段；不是将静帧循环成视频。
+    # 镜头在每段内分三拍推进：建立、推进、强调；转场时快速拉回。
+    scene,localtime,index=film.FindScene(t)
+    progress=min(1,max(0,localtime/scene.duration))
+    pulse=math.exp(-((localtime*2)%1)*8)
+    zoom=.977-.035*progress-.003*pulse
+    offset=(1-zoom)/2
     c.im=c.im.transform((W,H),Image.Transform.AFFINE,
-        (0.976,0,(0.012+0.0035*math.sin(t*.19))*W,
-         0,0.976,(0.012+0.003*math.cos(t*.17))*H),
+        (zoom,0,(offset+.004*math.sin(localtime*.65+index))*W,
+         0,zoom,(offset+.003*math.cos(localtime*.51+index))*H),
         resample=Image.Resampling.BICUBIC)
     return c.im
 
@@ -170,7 +175,8 @@ elif A.mode=='audio':
         whoosh=(smooth*.35+tone*.035)*env
         at=int((start-.08)*sr)
         signal[at:at+n,0]+=whoosh*.75;signal[at:at+n,1]+=whoosh
-    for start in [25,26.5,28,35,38,46,62,72,74,76,84,94,112,121.3]:
+    starts=[25,26.5,28,35,38,46,62,68.75,70.95,73.15,75.35,77.55,80.0,85,94,112,121.3]
+    for start in starts:
         n=int(sr*.7);t=np.arange(n)/sr
         freq=784 if start<44 else 523.25
         tone=(np.sin(2*np.pi*freq*t)+.4*np.sin(2*np.pi*freq*2*t))*.06*np.exp(-t*8)
@@ -184,10 +190,15 @@ elif A.mode=='audio':
         f.writeframes((np.clip(signal,-1,1)*32767).astype('<i2').tobytes())
     print('已输出程序化转场与数据音效',out)
 elif A.mode=='audit':
+    checked=0
     for i in range(1,len(film.scenes)+1):
         s=film.scenes[i]
-        for offset in [.45,1,2,s.duration-.5]:frame(s.start+offset)
+        offsets=[.45,1,2,s.duration-.5]
+        if s.id=='stages':offsets += [2.94,2.95,3.6,5.14,5.15,5.8,7.34,7.35,8.0,9.54,9.55,10.2,11.99,12.0,12.1,12.6,14.0]
+        if s.id=='problem':offsets += [4,7,10,12.5]
+        for offset in offsets:
+            frame(s.start+offset);checked+=1
     errors=list({e['text']:e for e in c.overflows}.values())
-    print(json.dumps({'scenes':len(film.scenes),'frames_checked':len(film.scenes)*4,'text_auto_fit':errors},ensure_ascii=False,indent=2))
+    print(json.dumps({'scenes':len(film.scenes),'frames_checked':checked,'text_auto_fit':errors},ensure_ascii=False,indent=2))
 ]==]
 return Export

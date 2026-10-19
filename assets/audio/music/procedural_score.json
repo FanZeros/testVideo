@@ -6,7 +6,7 @@
   "duration": 128.0,
   "sample_rate": 48000,
   "channels": 2,
-  "notes": 1711,
+  "notes": 1729,
   "seed": 20261019,
   "instruments": [
     "加法合成柔和铺底",
@@ -77,6 +77,6 @@
     }
   ],
   "peak_dbfs": -1.1105995842560359,
-  "sha256": "5944d9eefa28a0bd22dc14e85d354a362458d5f73712c0b4b1dec542bbc8e86e",
+  "sha256": "0531dc3a40662e38f536268027df1af3fddcf67f96681b4ae1d0629060ab2c3d",
   "file": "assets/audio/music/publishing_theme_procedural.wav"
 }

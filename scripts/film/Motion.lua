@@ -1,5 +1,6 @@
 -- 基于 scaffold-2d.lua 的生命周期组织；离线合成与引擎共用确定性分镜。
 local Film = require("film.Timeline")
+local Revision = require("film.Revision")
 local Motion = {}
 local C = {
     ink = {8, 16, 24}, panel = {15, 30, 41}, border = {40, 67, 78},
@@ -321,13 +322,31 @@ local renderers={opening=opening,problem=problem,pivot=pivot,credentials=credent
 function Motion.Render(d,time)
     local s,t,index=Film.FindScene(time)
     background(d,time,s.id)
-    renderers[s.id](d,s,t)
+    if s.id=="problem" then
+        Revision.Problem(d,s,t)
+    elseif s.id=="stages" then
+        Revision.Stages(d,s,t)
+    else
+        renderers[s.id](d,s,t)
+    end
+    Revision.Accents(d,s.id,t,s.duration)
     chrome(d,s,time,index)
-    -- 章节之间使用短促的同色遮罩扫场，不以长黑场割裂节奏。
-    if index>1 and t<0.38 then
-        local p=smooth(t/0.38)
-        rect(d,1920*p,0,1920*(1-p),1080,C.ink,1)
-        rect(d,1920*p-5,0,5,1080,C.mint,1-p)
+    -- 交替使用横扫、纵向揭幕与分层切片，切场与120BPM节拍衔接。
+    if index>1 and t<0.48 then
+        local p=smooth(t/0.48)
+        if index%3==0 then
+            for strip=0,5 do
+                local q=smooth((t-strip*.025)/.32)
+                rect(d,0,strip*180,1920*(1-q),181,C.ink,1)
+                rect(d,1920*(1-q),strip*180,3,181,C.mint,(1-q)*.8)
+            end
+        elseif index%3==1 then
+            rect(d,0,1080*p,1920,1080*(1-p),C.ink,1)
+            rect(d,0,1080*p-4,1920,4,C.mint,1-p)
+        else
+            rect(d,1920*p,0,1920*(1-p),1080,C.ink,1)
+            rect(d,1920*p-5,0,5,1080,C.mint,1-p)
+        end
     end
     if time<0.8 then rect(d,0,0,1920,1080,C.ink,1-smooth(time/0.8)) end
     if time>127 then rect(d,0,0,1920,1080,C.ink,smooth((time-127)/1)) end

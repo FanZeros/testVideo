@@ -103,9 +103,13 @@ function Music.BuildScore()
         end
     end
     -- 44秒与“热门榜第二”切场同步；结尾落在D大调，不硬截循环。
-    for _, at in ipairs({24,44,70,82,110,120}) do
+    for _, at in ipairs({4,17,24,44,60,68,84,110,120}) do
         note("swell", at - 0.85, 74, 1.9, at == 44 and 0.12 or 0.065, 0)
         note("bell", at, 86, 3.0, at == 44 and 0.095 or 0.055, 0.18)
+    end
+    for i, at in ipairs({68.75,70.95,73.15,75.35,77.55,80.0}) do
+        note("bell", at, i==6 and 86 or 81, 1.2, 0.045, i%2==0 and 0.2 or -0.2)
+        note("hat", at, 0, 0.12, 0.035, 0.1)
     end
     for i, pitch in ipairs({50,57,62,66,69,74}) do
         note("pad", 120, pitch, 6.2, 0.038, (i - 3.5) * 0.17)

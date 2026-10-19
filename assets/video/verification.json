@@ -1,5 +1,6 @@
 {
   "status": "passed",
+  "revision": "1.2-five-stage-motion",
   "verified_on": "2026-10-19",
   "master": {
     "path": "assets/video/publishing_explainer_1080p.mp4",
@@ -14,9 +15,9 @@
     "audio_sample_rate": 48000,
     "audio_channels": 2,
     "audio_duration_seconds": 128,
-    "size_bytes": 52478578,
-    "sha256": "b45eb6f79ee269fa354fe859dfa1bf108fa9786723cc16807344055b4f241758",
-    "complete_decode": "ffmpeg -v error -i master -f null -，退出码0，无错误输出"
+    "size_bytes": 50793611,
+    "sha256": "f13db9cab09cf0ada9474af6760fa9bae6ee9c374713553c0f60477b3386afa4",
+    "complete_decode": "正式交付路径执行ffmpeg -v error -i master -f null -，退出码0，无错误输出。"
   },
   "share": {
     "path": "assets/video/publishing_explainer_720p.mp4",
@@ -30,51 +31,57 @@
     "audio_codec": "aac",
     "audio_sample_rate": 48000,
     "audio_channels": 2,
-    "size_bytes": 15879447,
-    "sha256": "7aad8e4e0e7479abf6284e4df7e02ccc8d3cd3b311b90332d28721b34433f2a3",
-    "complete_decode": "ffmpeg -v error -i share -f null -，退出码0，无错误输出"
+    "size_bytes": 18781186,
+    "sha256": "89a9ac37f75b46aa51b3c57851132d508f3718070ec504b5cce603a3ebf484ba",
+    "complete_decode": "正式交付路径执行ffmpeg -v error -i share -f null -，退出码0，无错误输出。"
   },
   "audio": {
     "voiceover": false,
-    "source": "音乐由scripts/film/Music.lua程序作曲与数字合成，混入既有程序音效；不使用AI音乐、外部采样或配音。",
-    "measured_integrated_lufs": -16.03,
-    "measured_true_peak_dbtp": -1.62,
+    "source": "音乐由scripts/film/Music.lua程序作曲与数字合成，混入程序音效；不使用AI音乐、外部采样或配音。",
+    "measured_integrated_lufs": -16.04,
+    "measured_true_peak_dbtp": -1.67,
+    "measured_loudness_range_lu": 3.3,
     "measurement_source": "assets/audio/publishing_mix_procedural.m4a",
+    "measurement_tool": "FFmpeg loudnorm分析最终混音的input_i、input_tp、input_lra字段",
     "music_bpm": 120,
     "music_bars": 64,
-    "music_note_events": 1711,
+    "music_note_events": 1729,
     "music_seed": 20261019,
-    "measurement_tool": "FFmpeg loudnorm分析"
+    "music_wav_sha256": "0531dc3a40662e38f536268027df1af3fddcf67f96681b4ae1d0629060ab2c3d",
+    "five_stage_cue_seconds": [68.75, 70.95, 73.15, 75.35, 77.55, 80.0],
+    "cue_alignment": "音乐与动效提示使用相同的五阶段切换及总览时刻。"
   },
   "content_checks": {
     "scene_count": 14,
     "lua_runtime": "5.4",
-    "timeline_continuity": "通过",
-    "boundary_cases": 11,
-    "keyframe_layout_checks": 56,
+    "timeline_continuity": "14段连续覆盖0至128秒，合计3840帧。",
+    "keyframe_text_width_checks": 77,
     "text_width_overflows": 0,
-    "actual_encoded_frame_visual_checks": [40, 48, 123],
+    "text_check_scope": "覆盖各场景与五步切换边界；检查文字宽度和渲染异常，不等同于全面自动布局碰撞检测。",
+    "actual_encoded_frame_visual_checks_this_revision": [12, 72, 82],
+    "current_market_observation": "4至17秒明确呈现200多款游戏中只有前20个达到三位数流量；按服务方当下观察口径标注，非平台官方统计。220枚图形仅为数量关系示意。",
+    "page_9_interval_seconds": [68, 84],
+    "five_stage_order": ["预约期", "玩家预约反馈", "限量测试", "不限量测试", "首发"],
+    "five_stage_presentation": "逐步详情与对应动态图形，80秒起切换为五步总览；已校正阶段进度、提示音对齐和总览切换空帧。",
+    "motion_changes": "开场压缩至4秒；三类切场、逐章推镜、节拍重点交接、数据递增、扫描与阶段动态示意；变化抽样见motion_checks.json。",
     "source_image_metrics": "累计新增用户1,153,752；2021-05-03 APK新增下载完成量13,720，两者没有混同。",
     "historical_rank": "最高热门榜第二由委托方提供，画面未伪造榜单截图。",
     "platform_identity": "已注明独立服务，非TapTap官方服务或效果保证。",
     "raw_document": "保留用户原稿用于溯源；原稿中的固定效果承诺没有作为成片保证使用。"
   },
   "code_checks": {
-    "lua_syntax": "通过",
-    "embedded_python_ast": "通过",
+    "lua_syntax": "6个Lua文件通过Lua5.4 load语法检查。",
+    "embedded_python_ast": "Export.lua和Music.lua内嵌Python通过AST语法检查。",
     "lsp_error_count": 0,
-    "official_build": "通过",
-    "delivery_secret_scan": "未发现GitHub PAT、私钥或URL内嵌式凭证"
-  },
-  "revision": "1.1-procedural-music",
-  "video_stream_unchanged": {
-    "master_sha256": "39db2df1aefd7ae7db9c2c6e9ded7dbec3aaf6ba0c77fafa4970dab23646b2f7",
-    "share_sha256": "19c805d7be150321d60defb84086b6fa9bb6b414d2fa1346f13902d14566c5dd",
-    "result": "替换音乐前后的视频流SHA256一致，画面未重新压缩。"
+    "lsp_warning_count": 17,
+    "lsp_hint_count": 9,
+    "official_build": "正式成片替换后，官方build工具构建成功，入口scripts/main.lua。",
+    "delivery_secret_scan": "对scripts、assets/video、docs和.project下交付文本检查，未发现GitHub PAT、私钥或URL内嵌式凭证。"
   },
   "limitations": [
-    "未以实际浏览器交互验收UrhoX播放器；以最终MP4全片解码和关键帧视觉检查验收成片。",
-    "对经营数据采用委托方口径，未进行外部审计。",
+    "未以实际浏览器交互验收UrhoX播放器；以最终MP4全片解码、源代码抽检和实际编码关键帧视觉检查验收成片。",
+    "动态像素变化检测仅证明抽样时刻画面发生变化，不代表自动化审美评级。",
+    "对经营数据及市场观察采用委托方口径，未进行外部审计。",
     "未提供联系方式，结尾未虚构二维码、电话号码或账号。"
   ]
 }

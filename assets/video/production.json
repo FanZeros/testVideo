@@ -1,6 +1,6 @@
 {
   "title": "让好游戏，被更多玩家看见",
-  "version": "1.1-procedural-music",
+  "version": "1.2-five-stage-motion",
   "project_type": "商业发行服务动态讲解片",
   "delivery": {
     "master": "assets/video/publishing_explainer_1080p.mp4",
@@ -23,7 +23,9 @@
   "creative": {
     "hook": "你的游戏，值得被更多玩家看见",
     "structure": ["问题", "方法", "经验", "数据", "热门榜第二历史高光", "四大发行方法", "价值边界", "合作方式", "免费诊断引导"],
-    "motion": ["错峰文字升入与透明度动画", "数据计数递增", "粒子漂移", "轨道运动", "增长路径分段绘制", "阶段时间线推进", "数据原图扫描和局部叠加", "章节扫场转场", "全片镜头式慢推微移"],
+    "motion": ["220枚示意单元动态揭示头部20个与其他游戏的数量关系", "五阶段逐步聚焦、各自动态示意、最后五卡汇总", "每章随进度加速推镜与节拍微脉冲", "横扫、纵向揭幕、六层切片三类转场", "章节重点按节拍移交", "动态粒子、数据递增、图表绘制与截图扫描"],
+    "five_stage_process": ["预约期", "玩家预约反馈", "限量测试", "不限量测试", "首发"],
+    "revision_requests": ["第9页由三步改为五步，68至84秒逐一讲解", "4至17秒明确呈现200多款游戏只有前20个达到三位数流量的当下困境", "加强全片信息推进、节奏、镜头和转场，保留纯程序音乐"],
     "no_voice_design": "所有核心内容直接呈现于画面；短句、分层信息与足够停留时间，不依赖旁白补充信息。",
     "call_to_action": "发送游戏信息，免费发行诊断",
     "contact_note": "未提供联系方式，不虚构二维码、账号、网址或电话号码。"
@@ -34,7 +36,8 @@
     "1150000_plus_users": "文档口径；后台原图显示选定周期内新增1,153,752。",
     "13720_daily_apk_completions": "原图时间2021-05-03，指标为APK新增下载完成量，不写成独立用户或全平台总下载。",
     "ranking_number_2": "来自委托方明确补充：游戏最高到热门榜单第二；当前没有对应榜单截图。片中标注服务方提供、非当前榜单截图、不构成排名承诺。",
-    "removed_unverified_market_stats": "不将每天200款新游、首日热度通过率不足10%等未提供可核实出处的数据包装成第三方事实。",
+    "current_market_observation": "委托方本轮明确提供：200多款游戏只有前20个达到三位数流量。片中按服务方当下观察口径呈现，未冒充平台官方统计；220枚图形仅示意200多的数量级，并非精确样本数。",
+    "removed_unverified_market_stats": "不使用原文热度通过率不足10%等没有提供出处的数据。",
     "no_guarantees": "未承诺固定下载量、固定评分、固定榜位或保证获得官方资源。",
     "platform_independence": "独立发行服务介绍，非TapTap官方服务或效果保证。"
   },
@@ -49,6 +52,7 @@
   "source_code": {
     "timeline": "scripts/film/Timeline.lua",
     "motion_graphics": "scripts/film/Motion.lua",
+    "revision_motion": "scripts/film/Revision.lua",
     "procedural_music": "scripts/film/Music.lua",
     "export": "scripts/film/Export.lua",
     "urhox_player": "scripts/main.lua",
@@ -63,9 +67,9 @@
     "audit_command": "同上，末尾参数改为 --mode audit --width 1920",
     "path_override": "不在项目根目录时设置PUBLISHING_PROJECT_ROOT。",
     "music_command": "python3 -c \"from lupa.lua54 import LuaRuntime; m=LuaRuntime(unpack_returned_tuples=True).execute(open('scripts/film/Music.lua').read()); exec(compile(m.backend,'film.Music','exec'))\"",
-    "music_score": "assets/audio/music/procedural_score.json；固定种子20261019，120BPM，4/4，64小节，1711个音符事件。",
-    "music_mix": "128秒程序合成音乐与原有程序音效混合，双遍线性响度归一化；实测-16.03 LUFS、真峰值-1.62dBTP。",
-    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme_procedural.wav -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]volume=0.86[m];[1:a]volume=0.55[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9:measured_I=-16.74:measured_TP=-2.35:measured_LRA=4.60:measured_thresh=-26.88:offset=-0.85:linear=true[a]' -map '[a]' -t 128 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix_procedural.m4a",
+    "music_score": "assets/audio/music/procedural_score.json；固定种子20261019，120BPM，4/4，64小节，1729个音符事件。",
+    "music_mix": "128秒程序合成音乐与原有程序音效混合，双遍线性响度归一化；实测-16.04 LUFS、真峰值-1.67dBTP。",
+    "music_mix_command": "ffmpeg -i assets/audio/music/publishing_theme_procedural.wav -i assets/audio/motion_design_sfx.wav -filter_complex '[0:a]volume=0.86[m];[1:a]volume=0.55[s];[m][s]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9:measured_I=-16.71:measured_TP=-2.21:measured_LRA=4.80:measured_thresh=-26.85:offset=-0.85:linear=true[a]' -map '[a]' -t 128 -ar 48000 -c:a aac -b:a 256k assets/audio/publishing_mix_procedural.m4a",
     "mux_command": "ffmpeg -i assets/video/publishing_visual.mp4 -i assets/audio/publishing_mix_procedural.m4a -map 0:v:0 -map 1:a:0 -c copy -t 128 -movflags +faststart assets/video/publishing_explainer_1080p.mp4",
     "urhox": "修改Lua后先LSP检查，再使用官方build工具构建；不得手动写dist目录。"
   },

@@ -1,0 +1,41 @@
+{
+  "revision": "1.2-five-stage-motion",
+  "content_changes_detected": true,
+  "samples": [
+    {
+      "from": 68.8,
+      "to": 70.8,
+      "mean_pixel_change": 9.483
+    },
+    {
+      "from": 71.1,
+      "to": 73.1,
+      "mean_pixel_change": 11.4
+    },
+    {
+      "from": 73.3,
+      "to": 75.3,
+      "mean_pixel_change": 9.79
+    },
+    {
+      "from": 75.5,
+      "to": 77.5,
+      "mean_pixel_change": 9.456
+    },
+    {
+      "from": 77.7,
+      "to": 79.7,
+      "mean_pixel_change": 10.196
+    },
+    {
+      "from": 80.3,
+      "to": 83.5,
+      "mean_pixel_change": 13.388
+    },
+    {
+      "from": 6,
+      "to": 14,
+      "mean_pixel_change": 22.418
+    }
+  ]
+}
